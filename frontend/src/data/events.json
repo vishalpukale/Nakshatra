@@ -1,0 +1,58 @@
+{
+  "events": [
+    {
+      "id": 1,
+      "name": "Talent Hunt Showcase",
+      "type": "free",
+      "slug": "talent-hunt",
+      "description": "A free platform for talented individuals to showcase their skills. Participate in our nationwide talent hunt and get recognized by industry experts.",
+      "longDescription": "Join thousands of talented participants from across India in our free Talent Hunt Showcase. Whether you excel in singing, dancing, acting, art, sports, or any other skill, this is your chance to shine. Our platform connects you with mentors, industry professionals, and opportunities to take your talent to the next level.",
+      "images": [
+        "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800",
+        "https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800",
+        "https://images.unsplash.com/photo-1511578314322-379afb476865?w=800",
+        "https://images.unsplash.com/photo-1514525253161-7a46d19cd819?w=800"
+      ],
+      "features": [
+        "Free registration",
+        "Judged by industry experts",
+        "Certificate of participation",
+        "Winner recognition",
+        "Mentorship opportunities"
+      ],
+      "registrationFee": 0,
+      "availableStates": [1, 2, 3, 4, 5]
+    },
+    {
+      "id": 2,
+      "name": "Intercollege Competitions",
+      "type": "paid",
+      "slug": "competitions",
+      "description": "Compete with colleges from across five states in various competitive events. Registration fee applies.",
+      "longDescription": "The Intercollege Competitions bring together the brightest minds from Mumbai, Pune, Telangana, Andhra Pradesh, and Karnataka. Participate in multiple categories including sports, academics, arts, cultural events, and technical competitions. Winners receive cash prizes, trophies, and certificates.",
+      "images": [
+        "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800",
+        "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800",
+        "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=800",
+        "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?w=800"
+      ],
+      "features": [
+        "Multiple competition categories",
+        "Cash prizes and trophies",
+        "Certificate of participation",
+        "Networking opportunities",
+        "Media coverage"
+      ],
+      "registrationFee": 500,
+      "availableStates": [1, 2, 3, 4, 5],
+      "categories": [
+        "Sports",
+        "Academics",
+        "Arts & Culture",
+        "Technical",
+        "Business & Entrepreneurship"
+      ]
+    }
+  ]
+}
+

@@ -1,0 +1,13 @@
+{
+  "name": "docker-express-server",
+  "version": "1.0.0",
+  "description": "It serve the content of webapp from bundle folder",
+  "main": "index.js",
+  "author": "Vimal Bhaktwarti",
+  "license": "ISC",
+  "dependencies": {
+    "chalk": "^4.1.2",
+    "express": "^4.17.1",
+    "path": "^0.12.7"
+  }
+}

@@ -1,0 +1,35 @@
+{
+  "states": [
+    {
+      "id": 1,
+      "name": "Mumbai",
+      "code": "MH-MUM",
+      "description": "Financial capital of India"
+    },
+    {
+      "id": 2,
+      "name": "Pune",
+      "code": "MH-PUN",
+      "description": "Oxford of the East"
+    },
+    {
+      "id": 3,
+      "name": "Telangana",
+      "code": "TS",
+      "description": "State in southern India"
+    },
+    {
+      "id": 4,
+      "name": "Andhra Pradesh",
+      "code": "AP",
+      "description": "State in southeastern India"
+    },
+    {
+      "id": 5,
+      "name": "Karnataka",
+      "code": "KA",
+      "description": "State in southwestern India"
+    }
+  ]
+}
+
