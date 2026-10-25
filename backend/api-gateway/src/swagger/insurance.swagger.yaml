@@ -1,0 +1,223 @@
+openapi: 3.0.0
+info:
+  title: Claims Management API
+  description: API for managing claims
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3002
+    description: Claims server
+    variables:
+      port:
+        default: "3002" # Fix port here to match the server URL
+
+paths:
+  /api/claim/get:
+    get:
+      summary: Get all claims
+      description: Retrieve a list of all claims in the system.
+      tags:
+        - Claims
+      responses:
+        "200":
+          description: List of claims fetched successfully
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: "#/components/schemas/Claim"
+        "500":
+          description: Internal server error
+
+  /api/claim/create:
+    post:
+      summary: Create a new claim
+      description: Add a new claim for an insured user to the database.
+      tags:
+        - Claims
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                claimNo:
+                  type: string
+                  example: "CL123456789"
+                  description: Unique claim number.
+                insuredId:
+                  type: integer
+                  example: 1
+                  description: The ID of the insured person.
+                totalCharges:
+                  type: string
+                  example: "1000.50"
+                  description: Total charges associated with the claim.
+              required:
+                - claimNo
+                - insuredId
+                - totalCharges
+      responses:
+        "200":
+          description: Claim created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Claim created successfully."
+                  data:
+                    $ref: "#/components/schemas/Claim"
+        "400":
+          description: Invalid request data or missing required fields
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "Invalid input or missing required fields."
+        "500":
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "Error creating claim."
+        "401":
+          description: Unauthorized request, authentication required
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: false
+                  message:
+                    type: string
+                    example: "Unauthorized. Please authenticate."
+
+  /api/claim/{id}:
+    get:
+      summary: Get claim by ID
+      description: Retrieve a claim by its ID.
+      tags:
+        - Claims
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the claim to retrieve
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Claim found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Claim"
+        "404":
+          description: Claim not found
+        "500":
+          description: Internal server error
+
+    put:
+      summary: Update claim by ID
+      description: Update details of an existing claim.
+      tags:
+        - Claims
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the claim to update
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Claim"
+      responses:
+        "200":
+          description: Claim updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Claim"
+        "400":
+          description: Invalid input data
+        "404":
+          description: Claim not found
+        "500":
+          description: Internal server error
+
+    delete:
+      summary: Delete claim by ID
+      description: Remove a claim from the system.
+      tags:
+        - Claims
+      parameters:
+        - name: id
+          in: path
+          required: true
+          description: ID of the claim to delete
+          schema:
+            type: integer
+      responses:
+        "204":
+          description: Claim deleted successfully
+        "404":
+          description: Claim not found
+        "500":
+          description: Internal server error
+
+components:
+  schemas:
+    Claim:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        claimNo:
+          type: string
+          example: "CLAIM12345"
+        insuredId:
+          type: integer
+          example: 1
+        totalCharges:
+          type: number
+          format: float
+          example: 1000.50
+        createdDate:
+          type: string
+          format: date-time
+          example: "2023-03-22T12:34:56Z"
+        updatedDate:
+          type: string
+          format: date-time
+          example: "2023-03-22T12:34:56Z"
+        isDeleted:
+          type: boolean
+          example: false

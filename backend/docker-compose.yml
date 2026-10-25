@@ -1,0 +1,44 @@
+version: "3.8"
+
+# Common network configuration
+x-networks: &networks
+  networks:
+    - api-network
+
+services:
+  api-gateway:
+    build:
+      context: .
+      dockerfile: ./api-gateway/Dockerfile
+    depends_on:
+      # - insurance-service
+      - auth-service
+      - background-jobs
+      - onboarding-service
+
+  auth-service:
+    build:
+      context: .
+      dockerfile: ./auth-service/Dockerfile
+
+  # insurance-service:
+  #   build:
+  #     context: .
+  #     dockerfile: ./insurance-service/Dockerfile
+
+  onboarding-service:
+    build:
+      context: .
+      dockerfile: ./onboarding-service/Dockerfile
+    depends_on:
+      - auth-service
+      - background-jobs
+
+  background-jobs:
+    build:
+      context: .
+      dockerfile: ./background-jobs/Dockerfile
+
+networks:
+  api-network:
+    driver: bridge

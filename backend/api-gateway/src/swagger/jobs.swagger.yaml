@@ -1,0 +1,215 @@
+openapi: 3.0.0
+info:
+  title: Jobs Management API
+  description: API for managing jobs
+  version: 1.0.0
+
+servers:
+  - url: http://localhost:3004
+    description: Background jobs server
+    variables:
+      port:
+        default: "3004"
+
+paths:
+  /api/jobs/createAgentToSureLC:
+    post:
+      security:
+        - bearerAuth: []
+      summary: Create Agent to SureLC
+      description: Creates an agent in the SureLC system.
+      operationId: createAgentToSureLC
+      tags:
+        - Jobs
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                ssn:
+                  type: string
+                  example: "123-45-6789"
+                lastName:
+                  type: string
+                  example: "Doe"
+                firstName:
+                  type: string
+                  example: "John"
+                middleName:
+                  type: string
+                  example: "A"
+                suffix:
+                  type: string
+                  example: "Jr."
+                email:
+                  type: string
+                  format: email
+                  example: "example@test.com"
+                phone:
+                  type: string
+                  example: "123-456-7890"
+                cell:
+                  type: string
+                  example: "098-765-4321"
+              required:
+                - ssn
+                - lastName
+                - firstName
+                - email
+      responses:
+        "200":
+          description: Agent created successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Successfully created agent in SureLC"
+                  data:
+                    type: object
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Bad Request"
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Unauthorized"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal Server Error"
+  /api/jobs/verifySureLcLicense/{ssn}:
+    get:
+      security:
+        - bearerAuth: []
+      summary: Verify SureLC License
+      description: Verifies the license of an agent in the SureLC system.
+      operationId: verifySureLcLicense
+      tags:
+        - Jobs
+      parameters:
+        - name: ssn
+          in: path
+          required: true
+          description: The SSN of the agent to verify.
+          schema:
+            type: string
+            example: "123-45-6789"
+      responses:
+        "200":
+          description: License verified successfully
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  success:
+                    type: boolean
+                    example: true
+                  message:
+                    type: string
+                    example: "Agent sureLc license verified successfully"
+                  data:
+                    type: object
+        "400":
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "SSN is required."
+        "401":
+          description: Unauthorized
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Unauthorized"
+        "403":
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Forbidden"
+        "404":
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Not Found"
+        "500":
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: "Internal Server Error"
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT # Defines that the API uses JWT Bearer Token for authorization

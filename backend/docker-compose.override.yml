@@ -1,0 +1,27 @@
+version: "3.8"
+
+services:
+  api-gateway:
+    environment:
+      NODE_ENV: development
+      API_GATEWAY_PORT: 3000
+
+  auth-service:
+    environment:
+      NODE_ENV: development
+      AUTH_SERVICE_PORT: 3001
+
+  # insurance-service:
+  #   environment:
+  #     NODE_ENV: development
+  #     INSURANCE_SERVICE_PORT: 3002
+
+  onboarding-service:
+    environment:
+      NODE_ENV: development
+      ONBOARDING_SERVICE_PORT: 3003
+
+  background-jobs:
+    environment:
+      NODE_ENV: development
+      BACKGROUND_JOBS_PORT: 3004
