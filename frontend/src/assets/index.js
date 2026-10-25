@@ -79,9 +79,9 @@ import EventBgImage from "./theme/Event-Organisers-For-Dance-Parties.svg";
 import BannerOne from "./banner/Banner.svg";
 import BannerTwo from "./banner/Banner2.svg";
 import BannerThree from "./banner/Banner3.svg";
-import Facebook from "./icons/Facebook.svg";
-import Instagram from "./icons/Instagram.svg";
-import Youtube from "./icons/Youtube.svg";
+import Facebook from "./icons/facebook.svg";
+import Instagram from "./icons/instagram.svg";
+import Youtube from "./icons/youtube.svg";
 
 export {
   AttachmentIcon,
