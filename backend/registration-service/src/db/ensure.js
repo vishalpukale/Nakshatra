@@ -52,8 +52,8 @@ async function ensureRegistrationData() {
   for (const [key, value] of Object.entries(SITE_DEFAULTS)) {
     await pool.query(
       `INSERT INTO site_content (key, value)
-       SELECT $1, $2
-       WHERE NOT EXISTS (SELECT 1 FROM site_content WHERE key = $1)`,
+       SELECT $1::varchar, $2::text
+       WHERE NOT EXISTS (SELECT 1 FROM site_content WHERE key = $1::varchar)`,
       [key, value]
     );
   }
