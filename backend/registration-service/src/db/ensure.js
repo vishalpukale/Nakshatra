@@ -46,11 +46,14 @@ async function ensureRegistrationData() {
       updated_at timestamp NOT NULL DEFAULT now()
     )
   `);
+  await pool.query(`
+    CREATE UNIQUE INDEX IF NOT EXISTS site_content_key_uidx ON site_content (key)
+  `);
   for (const [key, value] of Object.entries(SITE_DEFAULTS)) {
     await pool.query(
       `INSERT INTO site_content (key, value)
-       VALUES ($1, $2)
-       ON CONFLICT (key) DO NOTHING`,
+       SELECT $1, $2
+       WHERE NOT EXISTS (SELECT 1 FROM site_content WHERE key = $1)`,
       [key, value]
     );
   }
